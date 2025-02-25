@@ -12,10 +12,28 @@ const ERROR_REQUIRED_FIELDS={
     message: 'Não foi possível realizar a requisição, pois existem campos obrigatórios que não foram preenchidos ou não atendem a quantidade de caracteres!!!'
 }
 
-const ERROR_INTERNAL_SERVER={
+const ERROR_INTERNAL_SERVER_MODEL={
     status: false,
     status_code: 500,
-    message: 'Devido a erros internos no servidor, não foi possível processar a requisição!!!'
+    message: 'Devido a erros internos no servidor da MODEL, não foi possível processar a requisição!!!'
+}
+
+const ERROR_INTERNAL_SERVER_CONTROLLER={
+    status: false,
+    status_code: 500,
+    message: 'Devido a erros internos no servidor da CONTROLLER, não foi possível processar a requisição!!!'
+}
+
+const ERROR_CONTENT_tYPE={
+    status: false,
+    status_code: 415,
+    message: 'Não foi possível processar a requisição, pois o tipo de dados encaminhado não é processado pelo servidor. Favor encaminhar dados apenas no formato JSON!!!'
+}
+
+const ERROR_NOT_FOUND={
+    status: false,
+    status_code: 404,
+    message: 'Não foram encontrados itens para retorno!!!'
 }
 
 
@@ -36,6 +54,9 @@ const SUCCESS_CREATED_ITEM={
 
 module.exports={
     ERROR_REQUIRED_FIELDS,
-    ERROR_INTERNAL_SERVER,
-    SUCCESS_CREATED_ITEM
+    ERROR_INTERNAL_SERVER_MODEL,
+    ERROR_INTERNAL_SERVER_CONTROLLER,
+    SUCCESS_CREATED_ITEM,
+    ERROR_CONTENT_tYPE,
+    ERROR_NOT_FOUND
 }

@@ -8,14 +8,17 @@
 //import da biblioteca do prisma/client para executar os scripts SQL
 const {PrismaClient}=require('@prisma/client')
 
+//instancia (criar objeto a ser utilizado) a biblioteca do prisma/client
+const prisma=new PrismaClient()
+
 
 
 //funcao para inserir um novo filme
 const insertFilme= async function(filme){
-    //instancia (criar objeto a ser utilizado) a biblioteca do prisma/client
-    const prisma=new PrismaClient()
 
-    let sql=`insert into tbl_filme  (nome,
+    try {
+
+        let sql=`insert into tbl_filme  (nome,
                                     duracao,
                                     sinopse,
                                     data_lancamento,
@@ -33,12 +36,19 @@ const insertFilme= async function(filme){
                                     )`
 
     //executa o scriptSQL no banco de dados e aguarda o retorno do BD para saber se deu certo
-    let result=await prisma.$executeRawUnsafe(sql)
+        let result=await prisma.$executeRawUnsafe(sql)
 
-    if(result)
-        return true
-    else
+        if(result)
+            return true
+        else
+            return false
+
+    } catch (error) {
+        console.log(error)
         return false
+    }
+
+    
 }
 
 //funcao para atualizar um filme existente
@@ -53,7 +63,21 @@ const deleteFilme=async function () {
 
 //funcao para retornar todos os filmes existentes
 const selectAllFilme=async function () {
-    
+    try {
+        //script sql para retornar odos os dados
+        let sql='select * from tbl_filme order by id desc'
+
+        //executa o script sql no bd e aguarda o retorno dos dados
+        let result=await prisma.$queryRawUnsafe(sql)
+
+            if(result)
+                return result
+            else
+            return false
+        
+    } catch (error) {
+        return false
+    }
 }
 
 //funco para buscar um filme pelo id
