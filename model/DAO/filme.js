@@ -52,13 +52,41 @@ const insertFilme= async function(filme){
 }
 
 //funcao para atualizar um filme existente
-const updateFilme= async function(){
+const updateFilme= async function(filme){
+    try {
+        let sql= `update tbl_filme set  nome = '${filme.nome}',
+                                        duracao='${filme.duracao}',
+                                        sinopse='${filme.sinopse}',
+                                        data_lancamento='${filme.data_lancamento}',
+                                        foto_capa='${filme.foto_capa}',
+                                        link_trailer='${filme.link_trailer}'
+                                where id = ${filme.id}`
 
+        let resultFilme=await prisma.$executeRawUnsafe(sql)
+
+        if(resultFilme)
+            return true
+        else
+            return false
+    } catch (error) {
+        return false
+    }
 }
 
 //funcao para excluir um filme existente
-const deleteFilme=async function () {
-    
+const deleteFilme=async function (id) {
+    try {
+        let sql= `delete from tbl_filme where id = ${id}`
+
+        let result = await prisma.$executeRawUnsafe(sql)
+
+        if(result)
+            return true
+        else
+            return false
+    } catch (error) {
+        return false
+    }
 }
 
 //funcao para retornar todos os filmes existentes
@@ -81,8 +109,19 @@ const selectAllFilme=async function () {
 }
 
 //funco para buscar um filme pelo id
-const selectByIdFilme=async function () {
-    
+const selectByIdFilme=async function (id) {
+    try {
+        let sql= `select * from tbl_filme where id = ${id}`
+
+        let result= await prisma.$queryRawUnsafe(sql)
+
+        if (result)
+            return result
+        else
+            return false
+    } catch (error) {
+        return false
+    }
 }
 
 module.exports={

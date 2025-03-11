@@ -64,6 +64,44 @@ app.get('/v1/controle-filmes/filme', cors(), async function (request, response) 
     response.json(resultFilme)
 })
 
+
+app.get('/v1/controle-filmes/filme/:id', cors(), async function (request, response){
+//recebe o id da requisicao
+    let idFilme=request.params.id
+
+    let resultFilme=await controllerFilme.buscarFilme(idFilme)
+
+    response.status(resultFilme.status_code)
+    response.json(resultFilme)
+})
+
+
+app.delete('/v1/controle-filmes/filme/:id', cors(), async function (request, response) {
+    let idFilme=request.params.id
+
+    let resultFilme=await controllerFilme.excluirFilme(idFilme)
+
+    response.status(resultFilme.status_code)
+    response.json(resultFilme)
+})
+
+app.put('/v1/controle-filmes/filme/:id', cors(), bodyParserJSON, async function (request, response){
+    //recebe o content type da requisicao
+    let contentType=request.headers['content-type']
+
+    //recebe o id da requisicao
+    let idFilme=request.params.id
+
+    //recebe os dados da requisicao pelo body
+    let dadosBody=request.body
+
+    let resultFilme=await controllerFilme.atualizarFilme(idFilme, dadosBody, contentType)
+
+    response.status(resultFilme.status_code)
+    response.json(resultFilme)
+})
+
+
 app.listen('8080', function(){
     console.log('API funcionando e aguardando requisições...')
 })

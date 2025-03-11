@@ -24,7 +24,7 @@ const ERROR_INTERNAL_SERVER_CONTROLLER={
     message: 'Devido a erros internos no servidor da CONTROLLER, não foi possível processar a requisição!!!'
 }
 
-const ERROR_CONTENT_tYPE={
+const ERROR_CONTENT_TYPE={
     status: false,
     status_code: 415,
     message: 'Não foi possível processar a requisição, pois o tipo de dados encaminhado não é processado pelo servidor. Favor encaminhar dados apenas no formato JSON!!!'
@@ -45,6 +45,18 @@ const SUCCESS_CREATED_ITEM={
     message: 'Item criado com sucesso!!!'
 }
 
+const SUCCESS_DELETED_ITEM={
+    status:true,
+    status_code: 200,
+    message: 'Item excluído com sucesso!!!'
+}
+
+const SUCCESS_UPDATED_ITEM={
+    status: true, 
+    status_code: 200,
+    message: 'Item atualizado com sucesso!!!'
+}
+
 
 
 
@@ -57,6 +69,8 @@ module.exports={
     ERROR_INTERNAL_SERVER_MODEL,
     ERROR_INTERNAL_SERVER_CONTROLLER,
     SUCCESS_CREATED_ITEM,
-    ERROR_CONTENT_tYPE,
-    ERROR_NOT_FOUND
+    ERROR_CONTENT_TYPE,
+    ERROR_NOT_FOUND,
+    SUCCESS_DELETED_ITEM,
+    SUCCESS_UPDATED_ITEM
 }
