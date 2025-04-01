@@ -180,6 +180,24 @@ const buscarFilme=async function(id){
     }
 }
 
+const inserirIdioma=async function () {
+    
+}
+const inserirGenero=async function () {
+    
+}
+const criarUsuario=async function () {
+    
+}
+const inserirSexo=async function () {
+    
+}
+const inserirNacionalidade=async function () {
+    
+}
+const inserirClassificacao=async function () {
+    
+}
 
 module.exports={
     inserirFilme,
